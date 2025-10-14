@@ -12,7 +12,6 @@ import exception.ExceptionPiloto;
 
 @ExtendWith(MockitoExtension.class)
 public class TestModeloPiloto {
-	
 	//Test 1: caso normal
 	@Test
     public void testPilotoCompleto()throws Exception{
@@ -31,5 +30,4 @@ public class TestModeloPiloto {
         Assertions.assertThrows(ExceptionPiloto.class, () -> {Piloto.factory(UUID.randomUUID(), null, "123456ABC", null);});
         Assertions.assertThrows(ExceptionPiloto.class, () -> {Piloto.factory(null, "Fanco Colapinto", "123456ABC", null);});
     }
-
 }

@@ -70,7 +70,4 @@ public class Piloto {
 		return Objects.equals(documento, other.documento) && Objects.equals(fecha_nacimiento, other.fecha_nacimiento)
 				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre);
 	}
-
-	
-    
 }

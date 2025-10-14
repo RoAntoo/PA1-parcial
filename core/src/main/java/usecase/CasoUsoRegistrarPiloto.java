@@ -31,7 +31,4 @@ public class CasoUsoRegistrarPiloto implements IRegistroPiloto{
 		return piloto.getId();
 	}
 	
-	
-	
-	
 }
