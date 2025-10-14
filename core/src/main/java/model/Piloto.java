@@ -23,37 +23,21 @@ public class Piloto {
 
     public static Piloto factory(UUID id, String nombre, String documento, LocalDate fecha_nacimiento) 
     		throws ExceptionPiloto {
-    	
-        if (id == null ){
-            throw new ExceptionPiloto("El id es obligatorio");
-        }
+    	//Lanzar Excepciones
+        if (id == null ) throw new ExceptionPiloto("ERROR: El campo del ID es obligatorio");
         
-        if (nombre == null || nombre.isBlank()){
-            throw new ExceptionPiloto("El nombre es obligatorio");
-        }
+        if (nombre == null || nombre.isBlank()) throw new ExceptionPiloto("ERROR: el campo del nombre es obligatorio");
         
-        if (documento == null || documento.isBlank()){
-            throw new ExceptionPiloto("El documento es obligatorio");
-        }
+        if (documento == null || documento.isBlank()) throw new ExceptionPiloto("ERROR: el campo del documento es obligatorio");
         
-        if (fecha_nacimiento == null ){
-            throw new ExceptionPiloto("La fecha de nacimiento es obligatoria");
-        }
+        if (fecha_nacimiento == null ) throw new ExceptionPiloto("ERROR: el campo de la fecha de nacimiento es obligatoria");
 
+        //Calcular edad 
         int edad = Period.between(fecha_nacimiento, LocalDate.now()).getYears();
-
-        if (edad < 18){
-            throw new ExceptionPiloto("El piloto debe ser mayor de edad");
-        }
+        
+        if (edad < 18) throw new ExceptionPiloto("ERROR: El piloto debe ser mayor de edad");
         
         return new Piloto(id, nombre, documento, fecha_nacimiento);
-    }
-    
-    public void actualizarNombre(String nuevoNombre) {
-        if (nuevoNombre == null || nuevoNombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre no puede ser nulo o vacío.");
-        }
-        this.nombre = nuevoNombre;
     }
 
     public UUID getId() {
@@ -87,5 +71,6 @@ public class Piloto {
 				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre);
 	}
 
+	
     
 }

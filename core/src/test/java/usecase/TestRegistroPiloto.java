@@ -41,18 +41,19 @@ public class TestRegistroPiloto {
         Assertions.assertEquals(id, registrarPiloto.registrarPiloto(piloto.getId(), piloto.getNombre(), piloto.getDocumento(), piloto.getFecha_nacimiento()));
     }
 
-    //Test 2: caso alternativo: mismos pilotos
+    //Test 2: caso alternativo: mismos documentos, diferentes edades
     @Test
     public void testErrorRegistro() throws ExceptionPiloto {
-        Piloto piloto = Piloto.factory(id, "Franco Armani", "12121212", LocalDate.MAX);
+        Piloto piloto = Piloto.factory(id, "Franco Armani", "12121212", LocalDate.EPOCH);
         when(repo.validarPiloto(piloto.getDocumento())).thenReturn(true);
         
         Assertions.assertThrows(ExceptionPiloto.class, () -> registrarPiloto.registrarPiloto(piloto.getId(), piloto.getNombre(), piloto.getDocumento(), piloto.getFecha_nacimiento()));
     }
     
+    //Test 3: caso alternativo: mismo documento, diferentes nombres
     @Test
     public void testErrorGuardado() throws ExceptionPiloto {
-        Piloto piloto = Piloto.factory(id, "Elvio Lados", "12121212", LocalDate.MIN);
+        Piloto piloto = Piloto.factory(id, "Elvio Lados", "12121212", LocalDate.EPOCH);
         when(repo.validarPiloto(piloto.getDocumento())).thenReturn(false);
         when(repo.guardarPiloto(piloto)).thenReturn(false);
         

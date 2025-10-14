@@ -19,8 +19,9 @@ public class CasoUsoRegistrarPiloto implements IRegistroPiloto{
 	public UUID registrarPiloto(UUID id, String nombre, String documento, LocalDate fecha_Nac) throws ExceptionPiloto {
 		Piloto piloto = Piloto.factory(id, nombre, documento, fecha_Nac);
 		
+		//Casos alternativos: No se registra el piloto
 		if (rep.validarPiloto(piloto.getDocumento())) {
-			throw new ExceptionPiloto("ERROR: El piloto que intenta registrar ya existe cargado");
+			throw new ExceptionPiloto("ERROR: El piloto que intenta registrar ya esta cargado");
 		}
 		
 		if (!rep.guardarPiloto(piloto)) {

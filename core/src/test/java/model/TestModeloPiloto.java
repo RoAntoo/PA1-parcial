@@ -12,14 +12,15 @@ import exception.ExceptionPiloto;
 
 @ExtendWith(MockitoExtension.class)
 public class TestModeloPiloto {
+	
 	//Test 1: caso normal
 	@Test
     public void testPilotoCompleto()throws Exception{
-        Piloto piloto = Piloto.factory(UUID.randomUUID(), "Fanco Colapinto", "123456ABC", LocalDate.MIN);
+        Piloto piloto = Piloto.factory(UUID.randomUUID(), "Fanco Colapinto", "123456ABC", LocalDate.EPOCH);
         Assertions.assertNotNull(piloto);
     }
 
-	//Test 2: caso alternativo
+	//Test 2: caso alternativo (se provocan las excepciones)
     @Test
     public void testValidarExcepciones(){  	
         Assertions.assertThrows(ExceptionPiloto.class, () -> {Piloto.factory(null, "Fanco Colapinto", "123456ABC", LocalDate.EPOCH);});
